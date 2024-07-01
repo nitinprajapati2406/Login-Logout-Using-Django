@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login and Signup Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 75%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .form-group .form-control:focus {
+            border-color: #495057;
+            box-shadow: none;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .signup-section {
+            max-height: 525px;
+            overflow-y: auto;
+        }
+    </style> 
+</head>
+<body>
+    <div class="container">
+        <!-- Messages Section -->
+        <div class="row">
+            <div class="col-12">
+                {% if messages %}
+                <div class="mt-3">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <!-- Login Section -->
+            <div class="col-md-4">
+                <div class="card login-section">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Login</h2>
+                        <form method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Login Section Ends -->
+
+            <!-- SignUp Section -->
+            <div class="col-md-8">
+                <div class="card signup-section">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Signup</h2>
+                        <form method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="userType">Type of User</label>
+                                <select class="form-control" id="userType" name="user_type">
+                                    <option>Patient</option>
+                                    <option>Doctor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Enter last name">
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePicture">Profile Picture</label>
+                                <input type="file" class="form-control-file" id="profilePicture" name="profile_picture">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email address</label>
+                                <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Confirm password">
+                            </div>
+                            <div class="form-group">
+                                <label for="addressLine1">Address Line 1</label>
+                                <input type="text" class="form-control" id="addressLine1" name="address_line1" placeholder="Enter address line 1">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Enter city">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" name="state" placeholder="Enter state">
+                            </div>
+                            <div class="form-group">
+                                <label for="pincode">Pincode</label>
+                                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Signup</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- SignUp Section Ends -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
